@@ -65,6 +65,13 @@ def print_pretty(dic):
         if dic[key] == []:
             continue
         print("File Name ----> "+str(key) + "Is similar to ------>"+str(dic[key]))
+def trim_rel_map(dic):
+    ret = {} 
+    for key in dic:
+        if dic[key] == []:
+            continue
+        ret[key] = dic[key]
+    return ret
         
 """ Sudo Code for how to compare all files in one directory to each other 
  Steps 
@@ -75,6 +82,8 @@ def print_pretty(dic):
  5. If a match is found mark that file as passed through and mark that key as passed through 
  6. Add it to  the dictonary file 
  7. Continue untill all keys have been scanned 
+ 
+ Returns a dictonary with file name and relative files 
  """
 def check_dir():
      data = load_jpg_dir()
@@ -96,9 +105,5 @@ def check_dir():
                 curr_ar = rel_map[jpg_file_list[i]]
                 curr_ar.append(jpg_file_list[j]) 
                 rel_map[jpg_file_list[i]] = curr_ar
-     return rel_map     
-sim = check_dir()
-print_pretty(sim)
-
-print("complete")
+     return trim_rel_map(rel_map)
 
